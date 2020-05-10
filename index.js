@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const crypto = require('crypto')
 const cors = require('cors')
 
-const request = require('request');
+const axios = require('axios')
 
 const app = express()
 const port = process.env.PORT || 4000
@@ -12,11 +12,13 @@ const port = process.env.PORT || 4000
 app.use(bodyParser.json(), cors())
 app.options('*', cors());
 
-app.get('/', (req, res) => {
-
-  request('https://www.goyabu.com', function (error, response, body) {
-    res.send(body)
-  });
+app.get('/', async (req, res) => {
+  try {
+    const { data } = await axios.get('https://dog.ceo/api/breeds/list/all')
+    res.json(data)
+  } catch (error) {
+    console.error(error)
+  }
 })
 
 app.listen(port, () => console.log(`Zoom Web SDK Sample Signature Node.js on port ${port}!`))
