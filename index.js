@@ -14,8 +14,8 @@ app.options('*', cors());
 
 app.get('/', async (req, res) => {
   try {
-    const { data } = await axios.get('https://dog.ceo/api/breeds/list/all')
-    res.json(data)
+    const { data } = await axios.get('https://goyabu.com')
+    res.send(data)
   } catch (error) {
     console.error(error)
   }
