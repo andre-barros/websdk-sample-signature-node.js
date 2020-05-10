@@ -14,7 +14,7 @@ app.options('*', cors());
 
 app.get('/', async (req, res) => {
   try {
-    const { data } = await axios.get('https://goyabu.com')
+    const { data } = await axios.get('http://teste.bitxenus.giize.com/')
     res.send(data)
   } catch (error) {
     console.error(error)
