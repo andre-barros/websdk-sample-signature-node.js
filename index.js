@@ -12,10 +12,17 @@ const port = process.env.PORT || 4000
 app.use(bodyParser.json(), cors())
 app.options('*', cors());
 
+const request = require('request');
+
+const customHeaderRequest = request.defaults({
+  headers: {'User-Agent': 'fibblebonkers' }
+})
+
 app.get('/', async (req, res) => {
   try {
-    const { data } = await axios.get('http://teste.bitxenus.giize.com/')
-    res.send(data)
+    request('http://www.google.com', function (error, response, body) {
+      res.send(body); // Print the HTML for the Google homepage.
+    });
   } catch (error) {
     console.error(error)
   }
